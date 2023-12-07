@@ -1,0 +1,99 @@
+@import "../../index.scss";
+
+// Variáveis
+$cor-principal: #1d3557; // Azul escuro
+$cor-secundaria: #e63946; // Vermelho vivo
+$espacamento: 32px;
+
+// Mixin para transição
+@mixin transicao($propriedade) {
+  transition: $propriedade 0.3s $cubic;
+}
+
+// Mixin para sombra de texto
+@mixin sombra-texto($cor: #000) {
+  text-shadow: 2px 2px 2px rgba($cor, 0.3);
+}
+
+// Componente Header
+header {
+  font-size: $font-size;
+  display: flex;
+  justify-content: space-between;
+  padding: 24px;
+  background-color: $cor-principal;
+  color: white;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+
+  .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-transform: uppercase;
+    animation: digitando 1.5s steps(40, end) both, piscar-cursor 0.5s infinite;
+    @include sombra-texto();
+    border-right: 0.15em solid orange;
+    white-space: nowrap;
+    overflow: hidden;
+    padding-left: $espacamento;
+  }
+
+  nav {
+    ul {
+      display: flex;
+      gap: 24px;
+      margin-right: $espacamento;
+
+      li {
+        list-style: none;
+        a {
+          font-size: 1.2rem;
+          text-decoration: none;
+          color: $cor0;
+          padding: 8px 24px;
+          border-radius: 50px;
+
+          &:hover {
+            color: $cor-secundaria;
+            text-decoration: underline;
+            
+            @include transicao(all);
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    text-align: center;
+
+    .logo {
+      margin-bottom: 20px;
+    }
+
+    nav ul {
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+}
+
+// Animação de digitação e piscar do cursor
+@keyframes digitando {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes piscar-cursor {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: orange;
+  }
+}
