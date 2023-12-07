@@ -1,37 +1,24 @@
-import { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.scss'
+import HeaderLogo from './HeaderLogo';
+import { HoverContext } from '../../context/Hover';
+import { useContext } from 'react';
 
 const Header = () => {
 
-    const frases: string[] = useMemo(() => ['Gefferson T. de Souza', 'Front End DEV', 'Meu Portfólio'], []);
-
-    const [ponteiro, setPonteiro] = useState<number>(0)
-
-    const [frase, setFrase] = useState<string>(frases[ponteiro])
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setPonteiro((ponteiro + 1) % frases.length)
-            setFrase(frases[ponteiro])
-        }, 2000)
-
-        return () => clearInterval(interval);
-    }, [ponteiro, frases])
+    const { setIsHover } = useContext(HoverContext);
 
     return (
         <header>
             <div>
-                <div className="logo" key={frase} >
-                    {frase}
-                </div>
+                <HeaderLogo />
             </div>
             <nav>
                 <ul>
                     <li><Link to="/" >Home</Link></li>
-                    <li><Link to="/sobre" >Sobre Mim</Link></li>
-                    <li><Link to="/projetos" >Projetos</Link></li>
-                    <li><Link to="/contato" >Contato</Link></li>
+                    <li><Link onMouseLeave={() => setIsHover(false)} onMouseEnter={() => setIsHover(true)} to="/sobre" >Sobre Mim</Link></li>
+                    <li><Link onMouseLeave={() => setIsHover(false)} onMouseEnter={() => setIsHover(true)} to="/projetos" >Projetos</Link></li>
+                    <li><Link onMouseLeave={() => setIsHover(false)} onMouseEnter={() => setIsHover(true)} to="/contato" >Contato</Link></li>
                 </ul>
             </nav>
         </header>
