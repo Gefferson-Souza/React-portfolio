@@ -1,0 +1,64 @@
+@import "../../index.scss";
+
+$font-size: 8vw;
+
+.projects-container {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  animation: clipPathAnimation 1s $cubic both;
+
+  .title-wrapper {
+    perspective: 1000px;
+    background-image: url("../../assets/bg-title.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: visible;
+    h1 {
+      font-family: "Playfair Display", sans-serif;
+      font-size: $font-size;
+      margin-bottom: 3rem;
+      text-align: center;
+      color: $cor1;
+      transform-style: preserve-3d;
+      z-index: 1000;
+      @include sombra-texto-vívido($cor1);
+      &::before,
+      &::after {
+        content: attr(data-text);
+        position: absolute;
+        left: 25%;
+        transform-origin: 0 100%;
+        transform: translateZ(5px);
+        width: 50%;
+      }
+
+      &::before {
+        z-index: 1;
+        transform: rotateX(5deg);
+        transform-origin: left;
+      }
+
+      &::after {
+        transform: rotateX(-5deg);
+        transform-origin: right;
+      }
+      transition: all 0.5s ease-in-out;
+
+      &:hover {
+        transform: rotateX(5deg) rotateY(5deg);
+      }
+    }
+  }
+}
+
+
+@keyframes clipPathAnimation {
+    from{
+        clip-path: polygon(50% 0, 0 0, 100% 0);
+    }
+    to{
+        clip-path: polygon(50% 100%, 0 0, 100% 0);
+    }
+}

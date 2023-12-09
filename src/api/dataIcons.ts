@@ -17,7 +17,7 @@ export const dataIcons: Icon[] = [
         className: 'fa-brands fa-square-js',
         delay: '1.8s',
         color: '#F7DF1E',
-        phrase: '"Não vá embora! Eu prometo que não serei tão assíncrono.',
+        phrase: 'Não vá embora! Eu prometo que não serei tão assíncrono.',
     },
     {
         className: 'fa-brands fa-html5',

@@ -1,21 +1,11 @@
 @import "../../index.scss";
 
 // Variáveis
-$cor-principal: #1d3557; // Azul escuro
-$cor-secundaria: #e63946; // Vermelho vivo
+$cor-principal: #1d3557;
+$cor-secundaria: #e63946;
 $espacamento: 32px;
 
-// Mixin para transição
-@mixin transicao($propriedade) {
-  transition: $propriedade 0.3s $cubic;
-}
 
-// Mixin para sombra de texto
-@mixin sombra-texto($cor: #000) {
-  text-shadow: 2px 2px 2px rgba($cor, 0.3);
-}
-
-// Componente Header
 header {
   font-size: $font-size;
   display: flex;

@@ -1,8 +1,7 @@
-
-import { useState, useContext, useEffect } from 'react';
-import './Home.scss'
+import { useState, useContext, useLayoutEffect } from 'react';
 import { HoverContext } from '../../context/Hover';
 import { Icon, dataIcons } from '../../api/dataIcons';
+import './Home.scss'
 
 const icons: Icon[] = dataIcons;
 
@@ -12,7 +11,7 @@ const Home = () => {
 
     const [iconState, setIconState] = useState<string>('initial');
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (isHover) {
             setIconState('hovered')
         }
@@ -28,7 +27,7 @@ const Home = () => {
     }
 
     return (
-        <main className='main-container'>
+        <main className='home-container'>
             <h1 className='title'>Desenvolvedor <br /> Front End <br />
                 <div className='title-icons-wrapper'>
                     {icons.map((icon, index) => {
@@ -41,10 +40,7 @@ const Home = () => {
                                 data-set={iconState}
                                 data-phrase={phrase}
                                 className={`${className}`}
-                                style={{ '--i': delay, '--cor': color } as React.CSSProperties}
-                                onMouseOver={(e) => setItemDataState(e.target as HTMLElement, 'hovered')}
-                                onMouseOut={(e) => setItemDataState(e.target as HTMLElement, 'final')}
-
+                                style={{ '--delay': delay, '--cor': color } as React.CSSProperties}
                             ></i>
                         );
                     })}

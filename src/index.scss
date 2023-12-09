@@ -41,6 +41,57 @@ $cubic: cubic-bezier(0.5, 0, 0.5, 1);
   box-sizing: border-box;
 }
 
+// Mixin para texto 3D
+@mixin texto3d($color: $cor0, $size: 10vw, $weight:bolder) {
+    @include sombra-texto-vívido($color);
+    font-family: "Playfair Display", sans-serif;
+    font-size: $size;
+    text-align: center;
+    color: $color;
+    font-weight: $weight;
+    transform-style: preserve-3d;
+    z-index: 1000;
+    &::before,
+    &::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 25%;
+      transform-origin: 0 100%;
+      transform: translateZ(5px);
+      width: 50%;
+    }
+
+    &::before {
+      z-index: 1;
+      transform: rotateX(5deg);
+      transform-origin: left;
+    }
+
+    &::after {
+      transform: rotateX(-5deg);
+      transform-origin: right;
+    }
+    transition: all 0.5s ease-in-out;
+
+    &:hover {
+      transform: rotateX(5deg) rotateY(5deg);
+    }
+}
+
+@mixin sombra-texto-vívido($cor: #000) {
+  text-shadow: 1px 5px 5px rgba(0,0,0, 0.5);
+}
+
+// Mixin para sombra de texto
+@mixin sombra-texto($cor: #000) {
+  text-shadow: 2px 2px 2px rgba($cor, 0.3);
+}
+
+// Mixin para transição
+@mixin transicao($propriedade) {
+  transition: $propriedade 0.3s $cubic;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

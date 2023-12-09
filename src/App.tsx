@@ -4,6 +4,7 @@ import './App.scss'
 import Home from './pages/Home/Home'
 import Layout from './components/Layout';
 import { HoverContextProvider } from './context/Hover';
+import Projects from './pages/Projects/Projects';
 
 function App() {
 
@@ -13,7 +14,7 @@ function App() {
         <Layout>
           <Routes>
             <Route path='/' element={<Home />} />
-            <Route path='/projetos' />
+            <Route path='/projetos' element={<Projects />} />
             <Route path='/contato' />
           </Routes>
         </Layout>
