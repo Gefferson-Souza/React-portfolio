@@ -37,70 +37,92 @@ $font-size: 10vw;
     align-items: center;
     display: flex;
     flex-flow: column nowrap;
-    .title-icons-wrapper {
-      display: flex;
-      justify-content: space-evenly;
-      align-items: center;
-      gap: 1rem;
-      border-radius: $bd-radius;
-      background-color: $cor0;
-      width: 100%;
-      margin: 5rem 1rem;
+    @include sombra-texto-vívido();
+    &::before,
+      &::after {
+        content: attr(data-text);
+        position: absolute;
+        left: 0%;
+        transform-origin: 0 100%;
+        transform: translateZ(5px);
+        width: 100%;
+      }
+      &::before {
+        z-index: 1;
+        transform: rotateX(5deg);
+        transform-origin: left;
+      }
 
-      i {
-        font-size: $font-size - 1vw;
+      &::after {
+        transform: rotateX(-5deg);
+        transform-origin: right;
+      }
 
-        &[data-set="initial"] {
-          animation: translateIcons 0.4s $cubic both;
-          animation-delay: var(--delay);
-        }
+  }
+  .title-icons-wrapper {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 1rem;
+    border-radius: $bd-radius;
+    background-color: $cor0;
+    width: 80%;
+    margin: 5rem 1rem;
+    z-index: 1000;
 
-        &[data-set="hovered"] {
-          animation: translateIconsHover 0.7s $cubic both infinite;
-          animation-delay: calc(var(--delay) - 1.3s);
-          color: var(--cor);
-          &::after {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: black;
-            font-size: 14px;
-            text-align: center;
-            text-transform: uppercase;
-            font-family: "Inter", sans-serif;
-            content: attr(data-phrase);
-            position: absolute;
-            top: -90%;
-            left: -20%;
-            z-index: 1000;
-            background-color: white;
-            width: 100%;
-            height: 100%;
-            clip-path: polygon(
-              0 20%,
-              100% 20%,
-              100% 75%,
-              75% 75%,
-              75% 100%,
-              50% 75%,
-              0% 75%
-            );
-          }
-        }
+    i {
+      font-size: $font-size - 1vw;
 
-        &[data-set="final"] {
-          color: var(--cor);
-        }
+      &[data-set="initial"] {
+        animation: translateIcons 0.4s $cubic both;
+        animation-delay: var(--delay);
+      }
 
-        &.fa-square-js {
-          background: linear-gradient(
-            180deg,
-            rgba(255, 255, 255, 0) 20%,
-            #1a1a1a 50%,
-            #000000 85%,
-            rgba(255, 255, 255, 0) 90%
+      &[data-set="hovered"] {
+        animation: translateIconsHover 0.7s $cubic both infinite;
+        animation-delay: calc(var(--delay) - 1.3s);
+        color: var(--cor);
+        &::after {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: black;
+          font-size: 14px;
+          text-align: center;
+          text-transform: uppercase;
+          font-family: "Inter", sans-serif;
+          content: attr(data-phrase);
+          position: absolute;
+          top: -90%;
+          left: -20%;
+          z-index: 1000;
+          background-color: white;
+          width: 100%;
+          height: 100%;
+          clip-path: polygon(
+            0 20%,
+            100% 20%,
+            100% 75%,
+            75% 75%,
+            75% 100%,
+            50% 75%,
+            0% 75%
           );
         }
+      }
+
+      &[data-set="final"] {
+        color: var(--cor);
+      }
+
+      &.fa-square-js {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0) 20%,
+          #1a1a1a 50%,
+          #000000 85%,
+          rgba(255, 255, 255, 0) 90%
+        );
       }
     }
   }

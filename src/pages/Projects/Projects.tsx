@@ -3,9 +3,6 @@ import './Projects.scss'
 
 export const Projects = () => {
 
-    function translateTextOnMouseOver(e: HTMLElement) {
-        
-    }
     return (
         <main className='projects-container'>
             <div  className="title-wrapper">
